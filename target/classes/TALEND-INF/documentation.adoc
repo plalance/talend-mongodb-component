@@ -1,0 +1,22 @@
+== MongoDbInput
+
+TODO fill the documentation for this mapper
+
+=== Configuration
+
+[cols="d,d,m,a,e,d",options="header"]
+|===
+|Display Name|Description|Default Value|Enabled If|Configuration Path|Configuration Type
+|configuration|TODO fill the documentation for this configuration|-|Always enabled|configuration|-
+|commentaires|TODO fill the documentation for this parameter|-|Always enabled|configuration.commentaires|-
+|database|TODO fill the documentation for this parameter|-|Always enabled|configuration.database|dataset
+|datastore|Informations de connexion à la base de données.|-|Always enabled|configuration.database.datastore|datastore
+|collection|TODO fill the documentation for this parameter|-|Always enabled|configuration.database.datastore.collection|datastore
+|database|TODO fill the documentation for this parameter|-|Always enabled|configuration.database.datastore.database|datastore
+|host|TODO fill the documentation for this parameter|-|Always enabled|configuration.database.datastore.host|datastore
+|password|TODO fill the documentation for this parameter|-|Always enabled|configuration.database.datastore.password|datastore
+|username|TODO fill the documentation for this parameter|-|Always enabled|configuration.database.datastore.username|datastore
+|options|TODO fill the documentation for this parameter|-|Always enabled|configuration.database.options|dataset
+|query|Requête mongo: équivalent à l'objet utilisé pour la méthode find();|-|Always enabled|configuration.database.query|dataset
+|===
+

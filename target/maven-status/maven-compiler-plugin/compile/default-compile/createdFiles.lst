@@ -1,0 +1,7 @@
+com\cerp\components\datastore\MongoDatastore.class
+com\cerp\components\source\MongoDbInputMapper.class
+com\cerp\components\source\MongoDbInputSource.class
+com\cerp\components\package-info.class
+com\cerp\components\dataset\MongoDataset.class
+com\cerp\components\service\MongoComponentService.class
+com\cerp\components\source\MongoDbInputMapperConfiguration.class
