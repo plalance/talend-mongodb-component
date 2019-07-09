@@ -1,7 +1,7 @@
 package com.cerp.components.source;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
@@ -60,25 +60,24 @@ public class MongoDbInputSource implements Serializable {
         final MongoDatabase db = client.getDatabase("nfe204");
         final MongoCollection<Document> coll = db.getCollection("movies");
 
-        buffer = new BufferizedProducerSupport<>(() -> {
-            ArrayList<Document> docs = new ArrayList<Document>();
-            coll.find().into(docs);
+        List<Document> docs = new ArrayList<Document>();
+        coll.find().into(docs);
+        docs = Optional.ofNullable(docs).orElse(Collections.emptyList());
 
-            if (docs == null || docs.size() < 1) {
-                return null;
-            }
 
-            return docs.stream() //
-                    .map(doc -> {
-                                System.out.println(" --> create doc : " + doc);
-                                return Json.createObjectBuilder() //
-                                        .add("titre", doc.getString("title"))//
-                                        .build(); //
-                            }
-                    ) //
-                    .collect(Collectors.toList()) //
-                    .iterator();
-        });
+        Iterator<JsonObject> bufferList = docs.stream() //
+                .map(doc -> {
+                            System.out.println(" --> create doc : " + doc);
+                            return Json.createObjectBuilder() //
+                                    .add("titre", doc.getString("title"))//
+                                    .build(); //
+                        }
+                ) //
+                .collect(Collectors.toList()) //
+                .iterator();
+
+
+        buffer = new BufferizedProducerSupport<>(() -> bufferList);
     }
 
     @Producer
@@ -123,5 +122,7 @@ public class MongoDbInputSource implements Serializable {
     public void release() {
         // this is the symmetric method of the init() one,
         // release potential connections you created or data you cached
+        System.out.println(">> Release");
+
     }
 }
