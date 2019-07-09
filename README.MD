@@ -1,8 +1,27 @@
 # Mongo Db Connector for Talend Open Studio (Compatible TOS 7.0.x)
-    
-# Partition Mapper
 
+Composant permettant de conencter Talend dans sa version 7.0.x et au delà à une base de données documentaire, MongoDb.
 
+Ce composant n'existe pas dans Talend Open Studio dans sa version gratuite, et n'est fourni par Talend qu'a partir de la solution Big Data, une solution complète apportant énormément de possibilités en terme d'architecture et de management de données d'entrerprise. Pour autant, cette solution logicielle est complexe, et peut être que certaines personne peuvent avoir à utiliser MongoDb sur le Studio Talend Open Source (TOS).
+
+Ce composant répond à un besoin personnel, il ne sera pas adapté à la demande sauf si j'en trouve l'utilité.
+
+Je développe ce composant Talend en respectant les normes actuelle du Framework Talend Component Kit dans sa version 1.1.11.
+
+## Utilisation du composant
+
+Après installation, le plugin apparaît dans la palette, dans la vue Intégration sous la Famille de composant Mongo.
+Il ne correspond pour le moment qu'a un composant de type Input, pas de traitement process ni de output pour le moment.
+
+A l'utilisation, les champs suivants sont configurables :
+
+- schema
+- host
+- user
+- password
+- database
+- collection
+- commentaire
 
 ## Builder le composant
  
