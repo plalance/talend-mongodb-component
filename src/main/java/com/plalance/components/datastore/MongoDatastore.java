@@ -1,4 +1,4 @@
-package com.cerp.components.datastore;
+package com.plalance.components.datastore;
 
 import java.io.Serializable;
 

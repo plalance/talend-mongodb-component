@@ -1,4 +1,4 @@
-package com.cerp.components.service;
+package com.plalance.components.service;
 
 import org.talend.sdk.component.api.service.Service;
 

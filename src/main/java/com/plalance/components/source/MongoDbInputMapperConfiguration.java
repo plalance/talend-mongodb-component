@@ -1,12 +1,12 @@
-package com.cerp.components.source;
+package com.plalance.components.source;
 
 import java.io.Serializable;
-
-import com.cerp.components.dataset.MongoDataset;
 
 import org.talend.sdk.component.api.configuration.Option;
 import org.talend.sdk.component.api.configuration.ui.layout.GridLayout;
 import org.talend.sdk.component.api.meta.Documentation;
+
+import com.plalance.components.dataset.MongoDataset;
 
 @GridLayout({
     // the generated layout put one configuration entry per line,
