@@ -23,8 +23,10 @@ import org.talend.sdk.component.api.meta.Documentation;
 
 @Documentation("TODO fill the documentation for this source")
 public class MongoDbInputSource implements Serializable {
+	
 	private final MongoDbInputMapperConfiguration configuration;
 	private final MongoComponentService service;
+	
 	private final JsonBuilderFactory builderFactory;
 
 	private transient BufferizedProducerSupport<JsonObject> buffer;
