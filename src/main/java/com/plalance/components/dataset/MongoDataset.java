@@ -4,8 +4,11 @@ import java.io.Serializable;
 
 import org.talend.sdk.component.api.configuration.Option;
 import org.talend.sdk.component.api.configuration.type.DataSet;
+import org.talend.sdk.component.api.configuration.type.meta.ConfigurationType;
 import org.talend.sdk.component.api.configuration.ui.layout.GridLayout;
+import org.talend.sdk.component.api.configuration.ui.widget.TextArea;
 import org.talend.sdk.component.api.meta.Documentation;
+import org.talend.sdk.component.api.service.configuration.Configuration;
 
 import com.plalance.components.datastore.MongoDatastore;
 
@@ -18,11 +21,15 @@ import com.plalance.components.datastore.MongoDatastore;
 		@GridLayout.Row({ "options" }) })
 @Documentation("Configuration du set de données.")
 public class MongoDataset implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+
 	@Option
 	@Documentation("Informations de connexion à la base de données.")
 	private MongoDatastore datastore;
 
 	@Option
+	@TextArea
 	@Documentation("Requête mongo: équivalent à l'objet utilisé pour la méthode find();")
 	private String query;
 
@@ -32,7 +39,7 @@ public class MongoDataset implements Serializable {
 
 	@Option
 	@Documentation("Contenu de la fonction limit() de MongoDb au format Json.")
-	private String limit;
+	private int limit;
 
 	public MongoDatastore getDatastore() {
 		return datastore;
@@ -61,14 +68,13 @@ public class MongoDataset implements Serializable {
 		return this;
 	}
 	
-	public String getlimit() {
+	public int getLimit() {
 		return limit;
 	}
 
-	public MongoDataset setLimit(String limit) {
+	public MongoDataset setLimit(int limit) {
 		this.limit = limit;
 		return this;
 	}
-	
 	
 }

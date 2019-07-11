@@ -16,6 +16,7 @@ import com.mongodb.client.MongoDatabase;
 import com.plalance.components.service.MongoComponentService;
 
 import org.bson.Document;
+import org.bson.codecs.pojo.InstanceCreatorFactory;
 import org.talend.sdk.component.api.base.BufferizedProducerSupport;
 import org.talend.sdk.component.api.configuration.Option;
 import org.talend.sdk.component.api.input.Producer;
@@ -49,6 +50,9 @@ public class MongoDbInputSource implements Serializable {
 		System.out.println("__ Database Used : " + configuration.getDatabase().getDatastore().getDatabase());
 		System.out.println("__ Collection Used : " + configuration.getDatabase().getDatastore().getCollection());
 		System.out.println("__ Query : " + configuration.getDatabase().getQuery());
+		System.out.println("__ Limit : " + configuration.getDatabase().getLimit());
+		
+		System.out.println("Limite Integer ?  : " + configuration.getDatabase().getLimit() );
 		System.out.println("------< >------");
 
 		// MongoDb Client
@@ -73,8 +77,12 @@ public class MongoDbInputSource implements Serializable {
 		// Generate Bson Doc of query
 		Document queryDoc = Document.parse(query);
 
-		// get data
-		coll.find(queryDoc).into(docs);
+		
+		if(Optional.ofNullable(configuration.getDatabase().getLimit()).isPresent()) {
+			coll.find(queryDoc).limit(configuration.getDatabase().getLimit()).into(docs);	
+		}else {
+			coll.find(queryDoc).into(docs);
+		}
 
 		docs = Optional.ofNullable(docs).orElse(Collections.emptyList());
 
