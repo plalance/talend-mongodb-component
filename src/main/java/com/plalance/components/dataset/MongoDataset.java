@@ -17,7 +17,8 @@ import com.plalance.components.datastore.MongoDatastore;
 		// the generated layout put one configuration entry per line,
 		// customize it as much as needed
 		@GridLayout.Row({ "datastore" }), 
-		@GridLayout.Row({ "query", "limit" }), 
+		@GridLayout.Row({ "query" }), 
+		@GridLayout.Row({ "limit", "rawMode" }), 
 		@GridLayout.Row({ "options" }) })
 @Documentation("Configuration du set de données.")
 public class MongoDataset implements Serializable {
@@ -39,7 +40,11 @@ public class MongoDataset implements Serializable {
 
 	@Option
 	@Documentation("Contenu de la fonction limit() de MongoDb au format Json.")
-	private int limit;
+	private Integer limit;
+	
+	@Option
+	@Documentation("Le contenu doit être renvoyé sous sa forme brute (Json)")
+	private Boolean rawMode;
 
 	public MongoDatastore getDatastore() {
 		return datastore;
@@ -68,12 +73,21 @@ public class MongoDataset implements Serializable {
 		return this;
 	}
 	
-	public int getLimit() {
+	public Integer getLimit() {
 		return limit;
 	}
 
-	public MongoDataset setLimit(int limit) {
+	public MongoDataset setLimit(Integer limit) {
 		this.limit = limit;
+		return this;
+	}
+	
+	public Boolean getRawMode() {
+		return rawMode;
+	}
+
+	public MongoDataset setRawMode(Boolean rawMode) {
+		this.rawMode = rawMode;
 		return this;
 	}
 	

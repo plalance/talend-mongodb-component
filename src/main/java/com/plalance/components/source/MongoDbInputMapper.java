@@ -26,13 +26,11 @@ import javax.json.bind.Jsonb;
 @Version(1) // default version is 1, if some configuration changes happen between 2 versions you can add a migrationHandler
 @Icon(Icon.IconType.STAR) // you can use a custom one using @Icon(value=CUSTOM, custom="filename") and adding icons/filename_icon32.png in resources
 @PartitionMapper(name = "MongoDbInput")
-@Documentation("TODO fill the documentation for this mapper")
+@Documentation("Super Composant...")
 public class MongoDbInputMapper implements Serializable {
 
     private final MongoDbInputMapperConfiguration configuration;
     private final MongoComponentService service;
-    private final JsonBuilderFactory recordBuilderFactory;
-    private final Jsonb jsonb;
 
     /**
      * Constructor
@@ -45,13 +43,10 @@ public class MongoDbInputMapper implements Serializable {
     public MongoDbInputMapper(
             @Option("configuration")
             final MongoDbInputMapperConfiguration configuration,
-            final MongoComponentService service,
-            final JsonBuilderFactory recordBuilderFactory,
-            final Jsonb jsonb) {
+            final MongoComponentService service) {
         this.configuration = configuration;
         this.service = service;
-        this.recordBuilderFactory = recordBuilderFactory;
-        this.jsonb = jsonb;
+
     }
 
     @Assessor
@@ -79,6 +74,6 @@ public class MongoDbInputMapper implements Serializable {
         // here we create an actual worker,
         // you are free to rework the configuration etc but our default generated implementation
         // propagates the partition mapper entries.
-        return new MongoDbInputSource(configuration, service, recordBuilderFactory);
+        return new MongoDbInputSource(configuration, service);
     }
 }

@@ -1,8 +1,8 @@
-C:\WorkSpaceJavaNew\talend-mongodb-component\src\main\java\com\plalance\components\datastore\MongoDatastore.java
-C:\WorkSpaceJavaNew\talend-mongodb-component\src\main\java\com\plalance\components\service\MongoComponentService.java
-C:\WorkSpaceJavaNew\talend-mongodb-component\src\main\java\com\plalance\components\source\MongoDbInputSource.java
-C:\WorkSpaceJavaNew\talend-mongodb-component\src\main\java\com\plalance\components\dataset\MongoDataset.java
-C:\WorkSpaceJavaNew\talend-mongodb-component\src\main\java\com\plalance\components\package-info.java
-C:\WorkSpaceJavaNew\talend-mongodb-component\src\main\java\com\plalance\components\source\MongoDbInputMapper.java
-C:\WorkSpaceJavaNew\talend-mongodb-component\src\main\java\com\plalance\components\source\MongoDbInputMapperConfiguration.java
-C:\WorkSpaceJavaNew\talend-mongodb-component\src\main\java\com\plalance\test\MongoDbClassTest.java
+C:\Users\plalance\JavaProjects\talend-mongodb-component\src\main\java\com\plalance\components\source\MongoDbInputMapper.java
+C:\Users\plalance\JavaProjects\talend-mongodb-component\src\main\java\com\plalance\components\service\MongoComponentService.java
+C:\Users\plalance\JavaProjects\talend-mongodb-component\src\main\java\com\plalance\components\datastore\MongoDatastore.java
+C:\Users\plalance\JavaProjects\talend-mongodb-component\src\main\java\com\plalance\components\source\MongoDbInputSource.java
+C:\Users\plalance\JavaProjects\talend-mongodb-component\src\main\java\com\plalance\test\MongoDbClassTest.java
+C:\Users\plalance\JavaProjects\talend-mongodb-component\src\main\java\com\plalance\components\package-info.java
+C:\Users\plalance\JavaProjects\talend-mongodb-component\src\main\java\com\plalance\components\source\MongoDbInputMapperConfiguration.java
+C:\Users\plalance\JavaProjects\talend-mongodb-component\src\main\java\com\plalance\components\dataset\MongoDataset.java

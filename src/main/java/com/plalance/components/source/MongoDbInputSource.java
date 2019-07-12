@@ -1,13 +1,22 @@
 package com.plalance.components.source;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.json.JsonObject;
 
-import javax.json.*;
+import org.bson.Document;
+import org.talend.sdk.component.api.base.BufferizedProducerSupport;
+import org.talend.sdk.component.api.configuration.Option;
+import org.talend.sdk.component.api.input.Producer;
+import org.talend.sdk.component.api.meta.Documentation;
 
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
@@ -15,28 +24,19 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.plalance.components.service.MongoComponentService;
 
-import org.bson.Document;
-import org.bson.codecs.pojo.InstanceCreatorFactory;
-import org.talend.sdk.component.api.base.BufferizedProducerSupport;
-import org.talend.sdk.component.api.configuration.Option;
-import org.talend.sdk.component.api.input.Producer;
-import org.talend.sdk.component.api.meta.Documentation;
-
 @Documentation("TODO fill the documentation for this source")
 public class MongoDbInputSource implements Serializable {
 	
 	private final MongoDbInputMapperConfiguration configuration;
-	private final MongoComponentService service;
 	
-	private final JsonBuilderFactory builderFactory;
+	private final MongoComponentService service;
 
 	private transient BufferizedProducerSupport<JsonObject> buffer;
 
 	public MongoDbInputSource(@Option("configuration") final MongoDbInputMapperConfiguration configuration,
-			final MongoComponentService service, final JsonBuilderFactory builderFactory) {
+			final MongoComponentService service) {
 		this.configuration = configuration;
 		this.service = service;
-		this.builderFactory = builderFactory;
 	}
 
 	@PostConstruct
@@ -85,35 +85,21 @@ public class MongoDbInputSource implements Serializable {
 		}
 
 		docs = Optional.ofNullable(docs).orElse(Collections.emptyList());
-
-		Iterator<JsonObject> bufferList = docs.stream() //
-				.map(doc -> {
-
-					JsonObjectBuilder builder = Json.createObjectBuilder();
-
-					HashMap<String, Object> keys = new HashMap<>();
-					keys.put("id", doc.get("_id"));
-					keys.put("title", doc.get("title"));
-					keys.put("year", doc.get("year"));
-					keys.put("genre", doc.get("genre"));
-					keys.put("summary", doc.get("summary"));
-
-					for (Map.Entry<String, Object> e : keys.entrySet()) {
-						String key = e.getKey();
-						Object value = e.getValue();
-
-						if (value == null)
-							builder.add(key, JsonValue.NULL);
-						else
-							builder.add(key, value.toString());
-					}
-
-					return builder.build();
-				}) //
-				.collect(Collectors.toList()) //
-				.iterator();
-
+		
+		Iterator<JsonObject> bufferList;
+		
+		if(configuration.getDatabase().getRawMode().equals(Boolean.TRUE)) {
+			bufferList = service.getDataAsStreamRawJsonObject(docs) //
+					.collect(Collectors.toList()) //
+					.iterator();
+		}else{
+			bufferList = service.getDataAsStream(docs) //
+			.collect(Collectors.toList()) //
+			.iterator();	
+		}
+		
 		buffer = new BufferizedProducerSupport<>(() -> bufferList);
+
 	}
 
 	@Producer
