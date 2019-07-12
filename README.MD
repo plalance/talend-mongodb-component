@@ -23,6 +23,47 @@ A l'utilisation, les champs suivants sont configurables :
 - collection : Collection dans laquell eeffectuer les requêtes.
 - commentaire : Juste un commentaire pour décrire ce que l'on fait du composant...
 
+# Informations relatives à MongoDb
+
+## Créer des utilisateurs de sécurité
+
+Créer un admin :
+
+use admin
+
+db.createUser(
+  {
+    user: "admin",
+    pwd: "admin",
+    roles: [ { role: "userAdminAnyDatabase", db: "admin" } ]
+  }
+)
+
+Créer un root :
+
+db.createUser(
+  {
+    user: "root",
+    pwd: "root",
+    roles: [ { role: "root", db: "admin" } ]
+  }
+)
+
+## Activer l'authentification sur le serveur MongoDb
+
+
+Sous Docker, (Installer vim ou autre édtieur au besoin : apt-get update && apt-get install vim) :
+
+	docker exec -ti <instancemongo> bash
+	
+	vim /etc/mongod.conf.orig
+	
+Et éditer comme suit :
+
+	security:
+	  authorization: "enabled"
+		
+    
 # Développer le composant
 
 ## Génération du formulaire widget du composant
