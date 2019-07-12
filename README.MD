@@ -8,20 +8,26 @@ Ce composant répond à un besoin personnel, il ne sera pas adapté à la demand
 
 Je développe ce composant Talend en respectant les normes actuelle du Framework Talend Component Kit dans sa version 1.1.11.
 
-## Utilisation du composant
+# Utilisation du composant
 
 Après installation, le plugin apparaît dans la palette, dans la vue Intégration sous la Famille de composant Mongo.
 Il ne correspond pour le moment qu'a un composant de type Input, pas de traitement process ni de output pour le moment.
 
 A l'utilisation, les champs suivants sont configurables :
 
-- schema
-- host
+- schema : Les champs qui seront récupérés par Talend (et non pas par le composant)
+- host : Serveur MongoDb au format : mongodb://XXX.XX.XX.XX
 - user
 - password
-- database
-- collection
-- commentaire
+- database : base de donnée Mongo à laquelle se connecter.
+- collection : Collection dans laquell eeffectuer les requêtes.
+- commentaire : Juste un commentaire pour décrire ce que l'on fait du composant...
+
+# Développer le composant
+
+## Génération du formulaire widget du composant
+
+https://talend.github.io/component-runtime/main/1.1.11/gallery.html
 
 ## Builder le composant
  
