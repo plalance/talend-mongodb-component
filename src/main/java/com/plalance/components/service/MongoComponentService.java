@@ -30,27 +30,7 @@ public class MongoComponentService {
 					String jsonString = doc.toJson(relaxed);
 					
 					return jsonFromString(jsonString);
-
-//					JsonObjectBuilder builder = Json.createObjectBuilder();
-//
-//					HashMap<String, Object> keys = new HashMap<>();
-//					keys.put("id", doc.get("_id"));
-//					keys.put("title", doc.get("title"));
-//					keys.put("year", doc.get("year"));
-//					keys.put("genre", doc.get("genre"));
-//					keys.put("summary", doc.get("summary"));
-//
-//					for (Map.Entry<String, Object> e : keys.entrySet()) {
-//						String key = e.getKey();
-//						Object value = e.getValue();
-//
-//						if (value == null)
-//							builder.add(key, JsonValue.NULL);
-//						else
-//							builder.add(key, value.toString());
-//					}
-//
-//					return builder.build();
+					
 				});
 	}
 
