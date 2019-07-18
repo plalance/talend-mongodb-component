@@ -17,75 +17,125 @@ import com.plalance.components.datastore.MongoDatastore;
 		// the generated layout put one configuration entry per line,
 		// customize it as much as needed
 		@GridLayout.Row({ "datastore" }), 
-		@GridLayout.Row({ "query" }), 
-		@GridLayout.Row({ "limit", "rawMode" }), 
-		@GridLayout.Row({ "options" }) })
+		@GridLayout.Row({ "requestDb", "requestCollection" }), 
+		@GridLayout.Row({ "requestQuery" }), 
+		@GridLayout.Row({ "queryLimit", "rawMode" })
+})
 @Documentation("Configuration du set de données.")
 public class MongoDataset implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
 	@Option
-	@Documentation("Informations de connexion à la base de données.")
+	@Documentation("Configuration de la source de donnée (hôte, authentification...).")
 	private MongoDatastore datastore;
 
 	@Option
+	@Documentation("Database to query in.")
+	private String requestDb;
+	
+	@Option
+	@Documentation("Collection to apply query on.")
+	private String requestCollection;
+	
+	@Option
 	@TextArea
-	@Documentation("Requête mongo: équivalent à l'objet utilisé pour la méthode find();")
-	private String query;
-
+	@Documentation("Query to apply == Json argument of find() method.")
+	private String requestQuery;
+	
 	@Option
-	@Documentation("TODO fill the documentation for this parameter")
-	private String options;
-
-	@Option
-	@Documentation("Contenu de la fonction limit() de MongoDb au format Json.")
-	private Integer limit;
+	@Documentation("Limit query results.")
+	private Integer queryLimit;
 	
 	@Option
 	@Documentation("Le contenu doit être renvoyé sous sa forme brute (Json)")
 	private Boolean rawMode;
 
+	/**
+	 * @return the datastore
+	 */
 	public MongoDatastore getDatastore() {
 		return datastore;
 	}
 
+	/**
+	 * @param datastore the datastore to set
+	 */
 	public MongoDataset setDatastore(MongoDatastore datastore) {
 		this.datastore = datastore;
 		return this;
 	}
 
-	public String getQuery() {
-		return query;
+	/**
+	 * @return the requestDb
+	 */
+	public String getRequestDb() {
+		return requestDb;
 	}
 
-	public MongoDataset setQuery(String query) {
-		this.query = query;
+	/**
+	 * @param requestDb the requestDb to set
+	 */
+	public MongoDataset setRequestDb(String requestDb) {
+		this.requestDb = requestDb;
 		return this;
 	}
 
-	public String getOptions() {
-		return options;
+	/**
+	 * @return the requestCollection
+	 */
+	public String getRequestCollection() {
+		return requestCollection;
 	}
 
-	public MongoDataset setOptions(String options) {
-		this.options = options;
+	/**
+	 * @param requestCollection the requestCollection to set
+	 */
+	public MongoDataset setRequestCollection(String requestCollection) {
+		this.requestCollection = requestCollection;
 		return this;
-	}
-	
-	public Integer getLimit() {
-		return limit;
 	}
 
-	public MongoDataset setLimit(Integer limit) {
-		this.limit = limit;
+	/**
+	 * @return the requestQuery
+	 */
+	public String getRequestQuery() {
+		return requestQuery;
+	}
+
+	/**
+	 * @param requestQuery the requestQuery to set
+	 */
+	public MongoDataset setRequestQuery(String requestQuery) {
+		this.requestQuery = requestQuery;
 		return this;
 	}
-	
+
+	/**
+	 * @return the queryLimit
+	 */
+	public Integer getQueryLimit() {
+		return queryLimit;
+	}
+
+	/**
+	 * @param queryLimit the queryLimit to set
+	 */
+	public MongoDataset setQueryLimit(Integer queryLimit) {
+		this.queryLimit = queryLimit;
+		return this;
+	}
+
+	/**
+	 * @return the rawMode
+	 */
 	public Boolean getRawMode() {
 		return rawMode;
 	}
 
+	/**
+	 * @param rawMode the rawMode to set
+	 */
 	public MongoDataset setRawMode(Boolean rawMode) {
 		this.rawMode = rawMode;
 		return this;

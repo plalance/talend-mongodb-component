@@ -1,26 +1,33 @@
 package com.plalance.test;
 
-import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import javax.json.Json;
-import javax.json.JsonArray;
 import javax.json.JsonObject;
-import javax.json.JsonReader;
 
 import org.bson.Document;
 import org.bson.json.JsonMode;
 import org.bson.json.JsonWriterSettings;
 
+import com.mongodb.MongoClientSettings;
+import com.mongodb.MongoClientSettings.Builder;
+import com.mongodb.MongoCredential;
+import com.mongodb.ServerAddress;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.plalance.components.dataset.MongoDataset;
+import com.plalance.components.datastore.MongoDatastore;
+import com.plalance.components.service.MongoComponentService;
 
 public class MongoDbClassTest {
+	
+	
+	final MongoComponentService service = new MongoComponentService();
 
 	public static void main(String[] args) {
 		MongoDbClassTest instance = new MongoDbClassTest();
@@ -35,19 +42,36 @@ public class MongoDbClassTest {
 	}
 
 	private void testMongoDb() {
-		MongoClient client = MongoClients.create("mongodb://127.0.0.1:27018");
-		MongoDatabase db = client.getDatabase("nfe204");
-		MongoCollection<Document> coll = db.getCollection("movies");
+		
+		MongoDatastore dstore = new MongoDatastore();
+		dstore.setDbHost("127.0.0.1");
+		dstore.setDbPort(27018);
+		dstore.setDbAuthEnabled(false);
+		dstore.setDbAuthPassword("");
+		dstore.setDbAuthSource("");
+		dstore.setDbAuthUser("");
+		
+		MongoDataset dset = new MongoDataset();
+		dset.setDatastore(dstore);
+		dset.setRequestDb("nfe204");
+		dset.setRequestCollection("movies");
+		dset.setQueryLimit(3);
+		dset.setRequestQuery("");
+		
+		MongoClient client = service.initMongoClient(dset);
+		
+		MongoDatabase db = client.getDatabase(dset.getRequestDb());
+		MongoCollection<Document> coll = db.getCollection(dset.getRequestCollection());
 
 		List<Document> docs = new ArrayList<>();
-		String query = "";
-		Integer limit = 3;
+	
+		Integer limit = dset.getQueryLimit();
 
-		query = Optional.ofNullable(query) // Value tested
-				.filter(s -> !s.isEmpty()) // Filter : string must not be emtpy
-				.orElse("{}"); // other cases : return empty json object.
+		String requestQuery = Optional.ofNullable(dset.getRequestQuery()) // Value tested
+				.filter(s -> !s.isEmpty()) // Filter : string must not be empty
+				.orElse("{}"); // other cases : return empty Json object.
 
-		Document queryDoc = Document.parse(query);
+		Document queryDoc = Document.parse(requestQuery);
 
 		Iterable<Document> collection;
 

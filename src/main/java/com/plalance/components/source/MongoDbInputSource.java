@@ -41,34 +41,20 @@ public class MongoDbInputSource implements Serializable {
 
 	@PostConstruct
 	public void init() {
-
-		System.out.println("------< MongoInput Component >------");
-		System.out.println("__ Configuration :");
-		System.out.println("__ Host : " + configuration.getDatabase().getDatastore().getHost());
-		System.out.println("__ Username : " + configuration.getDatabase().getDatastore().getUsername());
-		System.out.println("__ Password : " + configuration.getDatabase().getDatastore().getPassword());
-		System.out.println("__ Database Used : " + configuration.getDatabase().getDatastore().getDatabase());
-		System.out.println("__ Collection Used : " + configuration.getDatabase().getDatastore().getCollection());
-		System.out.println("__ Query : " + configuration.getDatabase().getQuery());
-		System.out.println("__ Limit : " + configuration.getDatabase().getLimit());
-		
-		System.out.println("Limite Integer ?  : " + configuration.getDatabase().getLimit() );
-		System.out.println("------< >------");
-
 		// MongoDb Client
-		MongoClient client = MongoClients.create(configuration.getDatabase().getDatastore().getHost());
+		MongoClient client = service.initMongoClient(configuration.getDatabase());
 
 		// Connect to NFE204 base & get movies collection
-		final MongoDatabase db = client.getDatabase(configuration.getDatabase().getDatastore().getDatabase());
+		final MongoDatabase db = client.getDatabase(configuration.getDatabase().getRequestDb());
 		final MongoCollection<Document> coll = db
-				.getCollection(configuration.getDatabase().getDatastore().getCollection());
+				.getCollection(configuration.getDatabase().getRequestCollection());
 
 		// Bson Document List, target of coll.find() results.
 		List<Document> docs = new ArrayList<>();
 
-		System.out.println("query is null ? " + (configuration.getDatabase().getQuery() == null));
+		System.out.println("query is null ? " + (configuration.getDatabase().getRequestQuery() == null));
 
-		String query = Optional.ofNullable(configuration.getDatabase().getQuery()) // Value tested
+		String query = Optional.ofNullable(configuration.getDatabase().getRequestQuery()) // Value tested
 				.filter(s -> !s.isEmpty()) // Filter : string must not be emtpy
 				.orElse("{}"); // other cases : return empty json object.
 
@@ -78,8 +64,8 @@ public class MongoDbInputSource implements Serializable {
 		Document queryDoc = Document.parse(query);
 
 		
-		if(Optional.ofNullable(configuration.getDatabase().getLimit()).isPresent()) {
-			coll.find(queryDoc).limit(configuration.getDatabase().getLimit()).into(docs);	
+		if(Optional.ofNullable(configuration.getDatabase().getQueryLimit()).isPresent()) {
+			coll.find(queryDoc).limit(configuration.getDatabase().getQueryLimit()).into(docs);	
 		}else {
 			coll.find(queryDoc).into(docs);
 		}

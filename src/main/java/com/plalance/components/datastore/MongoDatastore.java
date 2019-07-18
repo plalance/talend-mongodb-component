@@ -10,79 +10,117 @@ import org.talend.sdk.component.api.meta.Documentation;
 
 @DataStore("MongoDatastore")
 @GridLayout({
-    // the generated layout put one configuration entry per line,
-    // customize it as much as needed
-    @GridLayout.Row({ "host" }),
-    @GridLayout.Row({ "username" }),
-    @GridLayout.Row({ "password" }),
-    @GridLayout.Row({ "database" }),
-    @GridLayout.Row({ "collection" })
+		@GridLayout.Row({ "dbHost", "dbPort", "dbAuthEnabled" }),
+		@GridLayout.Row({ "dbAuthSource", "dbAuthUser", "dbAuthPassword" })
 })
 @Documentation("TODO fill the documentation for this configuration")
 public class MongoDatastore implements Serializable {
-    @Option
-    @Documentation("TODO fill the documentation for this parameter")
-    private String host;
 
-    @Option
-    @Documentation("TODO fill the documentation for this parameter")
-    private String username;
+	private static final long serialVersionUID = 1L;
 
-    @Credential
-    @Option
-    @Documentation("TODO fill the documentation for this parameter")
-    private String password;
+	@Option
+	@Documentation("The database host")
+	private String dbHost;
 
-    @Option
-    @Documentation("TODO fill the documentation for this parameter")
-    private String database;
+	@Option
+	@Documentation("The database port")
+	private Integer dbPort;
 
-    @Option
-    @Documentation("TODO fill the documentation for this parameter")
-    private String collection;
+	@Option
+	@Documentation("Auth enabled or not")
+	private Boolean dbAuthEnabled;
 
-    public String getHost() {
-        return host;
-    }
+	@Option
+	@Documentation("In which database is the user defined, for authentication")
+	private String dbAuthSource;
 
-    public MongoDatastore setHost(String host) {
-        this.host = host;
-        return this;
-    }
+	@Option
+	@Documentation("The username for authentication")
+	private String dbAuthUser;
 
-    public String getUsername() {
-        return username;
-    }
+	@Credential
+	@Option
+	@Documentation("The password for authentication")
+	private String dbAuthPassword;
 
-    public MongoDatastore setUsername(String username) {
-        this.username = username;
-        return this;
-    }
+	
+	
+	public MongoDatastore setDbHost(String dbHost) {
+		this.dbHost = dbHost;
+		return this;
+	}
+	
+	public MongoDatastore setDbHost(Integer dbPort) {
+		this.dbPort = dbPort;
+		return this;
+	}
+	
+	public MongoDatastore setDbAuthEnabled(Boolean dbAuthEnabled) {
+		this.dbAuthEnabled = dbAuthEnabled;
+		return this;
+	}
+	
+	public MongoDatastore setDbAuthSource(String dbAuthSource) {
+		this.dbAuthSource = dbAuthSource;
+		return this;
+	}
+	
+	public MongoDatastore setDbAuthUser(String dbAuthUser) {
+		this.dbAuthUser = dbAuthUser;
+		return this;
+	}
+	
+	public MongoDatastore setDbAuthPassword(String dbAuthPassword) {
+		this.dbAuthPassword = dbAuthPassword;
+		return this;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	/**
+	 * @return the dbPort
+	 */
+	public Integer getDbPort() {
+		return dbPort;
+	}
 
-    public MongoDatastore setPassword(String password) {
-        this.password = password;
-        return this;
-    }
+	/**
+	 * @param dbPort the dbPort to set
+	 */
+	public void setDbPort(Integer dbPort) {
+		this.dbPort = dbPort;
+	}
 
-    public String getDatabase() {
-        return database;
-    }
+	/**
+	 * @return the dbHost
+	 */
+	public String getDbHost() {
+		return dbHost;
+	}
 
-    public MongoDatastore setDatabase(String database) {
-        this.database = database;
-        return this;
-    }
+	/**
+	 * @return the dbAuthEnabled
+	 */
+	public Boolean getDbAuthEnabled() {
+		return dbAuthEnabled;
+	}
 
-    public String getCollection() {
-        return collection;
-    }
+	/**
+	 * @return the dbAuthSource
+	 */
+	public String getDbAuthSource() {
+		return dbAuthSource;
+	}
 
-    public MongoDatastore setCollection(String collection) {
-        this.collection = collection;
-        return this;
-    }
+	/**
+	 * @return the dbAuthUser
+	 */
+	public String getDbAuthUser() {
+		return dbAuthUser;
+	}
+
+	/**
+	 * @return the dbAuthPassword
+	 */
+	public String getDbAuthPassword() {
+		return dbAuthPassword;
+	}
 }

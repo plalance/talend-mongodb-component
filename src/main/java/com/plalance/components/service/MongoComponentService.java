@@ -1,6 +1,7 @@
 package com.plalance.components.service;
 
 import java.io.StringReader;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -13,6 +14,15 @@ import org.bson.Document;
 import org.bson.json.JsonMode;
 import org.bson.json.JsonWriterSettings;
 import org.talend.sdk.component.api.service.Service;
+
+import com.mongodb.MongoClientSettings;
+import com.mongodb.MongoCredential;
+import com.mongodb.ServerAddress;
+import com.mongodb.MongoClientSettings.Builder;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.plalance.components.dataset.MongoDataset;
+import com.plalance.components.datastore.MongoDatastore;
 
 @Service
 public class MongoComponentService {
@@ -58,5 +68,43 @@ public class MongoComponentService {
 	    jsonReader.close();
 
 	    return object;
+	}
+	
+	/**
+	 * Creates MongoClient instance based on DataStore configuration and returns it.
+	 * @param dset
+	 * @return
+	 */
+	public MongoClient initMongoClient(MongoDataset dset) {
+		
+		System.out.println("------< MongoInput Component >------");	
+		System.out.println("__ Host : " + dset.getDatastore().getDbHost());
+		System.out.println("__ Username : " + dset.getDatastore().getDbAuthUser());
+		System.out.println("__ Password : " + dset.getDatastore().getDbAuthPassword());
+		System.out.println("----");		
+		System.out.println("__ Database Used : " + dset.getRequestDb());
+		System.out.println("__ Collection Used : " + dset.getRequestCollection());
+		System.out.println("__ Query : " + dset.getRequestQuery());
+		System.out.println("__ Limit : " + dset.getQueryLimit());
+		System.out.println("------------");
+		
+		MongoDatastore dstore = dset.getDatastore();
+		
+		Builder connectionBuilder = MongoClientSettings.builder()
+				.applyToClusterSettings(builder -> builder.hosts(
+						Arrays.asList(new ServerAddress(dstore.getDbHost(), dstore.getDbPort()))));
+
+		if (dset.getDatastore().getDbAuthEnabled()) {
+			MongoCredential credential = MongoCredential
+					.createCredential(dstore.getDbAuthUser(), dstore.getDbAuthSource(), dstore.getDbAuthPassword().toCharArray());
+
+			System.out.println("Authentication credential : " + credential);
+			
+			connectionBuilder.credential(credential);
+		}
+
+		MongoClient client = MongoClients.create(connectionBuilder.build());
+		
+		return client;
 	}
 }

@@ -20,7 +20,7 @@ A l'utilisation, les champs suivants sont configurables :
 - user
 - password
 - database : base de donnée Mongo à laquelle se connecter.
-- collection : Collection dans laquell eeffectuer les requêtes.
+- collection : Collection dans laquelle effectuer les requêtes.
 - commentaire : Juste un commentaire pour décrire ce que l'on fait du composant...
 
 # Informations relatives à MongoDb
