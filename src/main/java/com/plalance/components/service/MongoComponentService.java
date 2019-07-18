@@ -22,6 +22,7 @@ import com.mongodb.MongoClientSettings.Builder;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.plalance.components.dataset.MongoDataset;
+import com.plalance.components.dataset.MongoOutputDataset;
 import com.plalance.components.datastore.MongoDatastore;
 
 @Service
@@ -77,7 +78,7 @@ public class MongoComponentService {
 	 */
 	public MongoClient initMongoClient(MongoDataset dset) {
 		
-		System.out.println("------< MongoInput Component >------");	
+		System.out.println("------< Mongo Input Component >------");	
 		System.out.println("__ Host : " + dset.getDatastore().getDbHost());
 		System.out.println("__ Username : " + dset.getDatastore().getDbAuthUser());
 		System.out.println("__ Password : " + dset.getDatastore().getDbAuthPassword());
@@ -86,6 +87,42 @@ public class MongoComponentService {
 		System.out.println("__ Collection Used : " + dset.getRequestCollection());
 		System.out.println("__ Query : " + dset.getRequestQuery());
 		System.out.println("__ Limit : " + dset.getQueryLimit());
+		System.out.println("------------");
+		
+		MongoDatastore dstore = dset.getDatastore();
+		
+		Builder connectionBuilder = MongoClientSettings.builder()
+				.applyToClusterSettings(builder -> builder.hosts(
+						Arrays.asList(new ServerAddress(dstore.getDbHost(), dstore.getDbPort()))));
+
+		if (dset.getDatastore().getDbAuthEnabled()) {
+			MongoCredential credential = MongoCredential
+					.createCredential(dstore.getDbAuthUser(), dstore.getDbAuthSource(), dstore.getDbAuthPassword().toCharArray());
+
+			System.out.println("Authentication credential : " + credential);
+			
+			connectionBuilder.credential(credential);
+		}
+
+		MongoClient client = MongoClients.create(connectionBuilder.build());
+		
+		return client;
+	}
+	
+	/**
+	 * Creates MongoClient instance based on DataStore configuration and returns it.
+	 * @param dset
+	 * @return
+	 */
+	public MongoClient initMongoClientForOutput(MongoOutputDataset dset) {
+		
+		System.out.println("------< Mongo Output Component >------");	
+		System.out.println("__ Host : " + dset.getDatastore().getDbHost());
+		System.out.println("__ Username : " + dset.getDatastore().getDbAuthUser());
+		System.out.println("__ Password : " + dset.getDatastore().getDbAuthPassword());
+		System.out.println("----");		
+		System.out.println("__ Database Used : " + dset.getRequestDb());
+		System.out.println("__ Collection Used : " + dset.getRequestCollection());
 		System.out.println("------------");
 		
 		MongoDatastore dstore = dset.getDatastore();
