@@ -3,6 +3,8 @@ package com.plalance.components.datastore;
 import java.io.Serializable;
 
 import org.talend.sdk.component.api.configuration.Option;
+import org.talend.sdk.component.api.configuration.condition.ActiveIf;
+import org.talend.sdk.component.api.configuration.constraint.Required;
 import org.talend.sdk.component.api.configuration.type.DataStore;
 import org.talend.sdk.component.api.configuration.ui.layout.GridLayout;
 import org.talend.sdk.component.api.configuration.ui.widget.Credential;
@@ -31,15 +33,21 @@ public class MongoDatastore implements Serializable {
 	private Boolean dbAuthEnabled;
 
 	@Option
+	@ActiveIf(target="dbAuthEnabled", value="true")
+	@Required
 	@Documentation("In which database is the user defined, for authentication")
 	private String dbAuthSource;
 
 	@Option
+	@ActiveIf(target="dbAuthEnabled", value="true")
+	@Required
 	@Documentation("The username for authentication")
 	private String dbAuthUser;
 
 	@Credential
 	@Option
+	@ActiveIf(target="dbAuthEnabled", value="true")
+	@Required
 	@Documentation("The password for authentication")
 	private String dbAuthPassword;
 
