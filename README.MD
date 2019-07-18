@@ -77,6 +77,11 @@ https://talend.github.io/component-runtime/main/1.1.11/gallery.html
 ## Déployer le composant dans Talend
 
       mvnw talend-component:deploy-in-studio -Dtalend.component.studioHome="C:\Talend-Studio\studio"
+
+	  autre exemple :
+	        
+      mvnw talend-component:deploy-in-studio -Dtalend.component.studioHome="C:\Talend-Open-Studio\TOS_DI-Win32-20190620_1446-V7.2.1"
+
       
 ## Vérifier le rendu du composant
 
