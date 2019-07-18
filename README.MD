@@ -15,13 +15,26 @@ Il ne correspond pour le moment qu'a un composant de type Input, pas de traiteme
 
 A l'utilisation, les champs suivants sont configurables :
 
+Soure de données :
+- Hôte: IP du Serveur MongoDb, basiquement 127.0.0.1
+- Port: Port du Serveur MongoDb, basiquement 27017
+- Authentification (Checkbox) : Définit si l'on souhaite utiliser l'authentification Mongo ou non. 
+- User: Utilisateur
+- Password: Mot de passe
+- Base de données d'authentification: Base dans laquelle l'utilisateur est enregistré.
+
+Set de données :
+- database: base de donnée dans laquelle trouver les données.
+- collection: collection pour laquelle la reqûete est appliquée.
+- query: requête à appliquer (argument au format Json de la méthode find() ).
+- limit: limite du nombre de documents à rammener pour cete requête. C'est un filtre mongo, et non pas un filtre sur les données retournées.
+- rawMode / JSON mode: si cochée, les résultats seront donnés sous forme de String Json au lieu du format colonne Talend classique. L'unique champs sera alors : string et l'outil "Guess Schema" ne donenra qu'un champs String. Cette fonction est à utiliser pour tirer partie de composants tels que tExtractJsonFields par exemple. Utile aussi pour traiter de la donnée brute (WebServices...).
+
+Flux de données :
 - schema : Les champs qui seront récupérés par Talend (et non pas par le composant)
-- host : Serveur MongoDb au format : mongodb://XXX.XX.XX.XX
-- user
-- password
-- database : base de donnée Mongo à laquelle se connecter.
-- collection : Collection dans laquelle effectuer les requêtes.
-- commentaire : Juste un commentaire pour décrire ce que l'on fait du composant...
+
+Autre :
+- commentaire : Juste un commentaire pour décrire ce que l'on fait du composant.
 
 # Informations relatives à MongoDb
 
