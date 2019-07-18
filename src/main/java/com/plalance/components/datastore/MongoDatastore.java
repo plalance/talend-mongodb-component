@@ -21,10 +21,12 @@ public class MongoDatastore implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Option
+	@Required
 	@Documentation("The database host")
 	private String dbHost;
 
 	@Option
+	@Required
 	@Documentation("The database port")
 	private Integer dbPort;
 
@@ -34,20 +36,17 @@ public class MongoDatastore implements Serializable {
 
 	@Option
 	@ActiveIf(target="dbAuthEnabled", value="true")
-	@Required
 	@Documentation("In which database is the user defined, for authentication")
 	private String dbAuthSource;
 
 	@Option
 	@ActiveIf(target="dbAuthEnabled", value="true")
-	@Required
 	@Documentation("The username for authentication")
 	private String dbAuthUser;
 
 	@Credential
 	@Option
 	@ActiveIf(target="dbAuthEnabled", value="true")
-	@Required
 	@Documentation("The password for authentication")
 	private String dbAuthPassword;
 

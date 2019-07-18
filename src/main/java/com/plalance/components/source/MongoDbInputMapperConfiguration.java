@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import org.talend.sdk.component.api.configuration.Option;
 import org.talend.sdk.component.api.configuration.ui.layout.GridLayout;
+import org.talend.sdk.component.api.configuration.ui.widget.TextArea;
 import org.talend.sdk.component.api.meta.Documentation;
 
 import com.plalance.components.dataset.MongoDataset;
@@ -17,11 +18,12 @@ import com.plalance.components.dataset.MongoDataset;
 @Documentation("TODO fill the documentation for this configuration")
 public class MongoDbInputMapperConfiguration implements Serializable {
     @Option
-    @Documentation("TODO fill the documentation for this parameter")
+    @Documentation("DataStore de ce champs.")
     private MongoDataset database;
 
     @Option
-    @Documentation("TODO fill the documentation for this parameter")
+	@TextArea
+    @Documentation("Champs pour décrire l'utilsiation que l'on fait de ce composant.")
     private String commentaires;
 
     public MongoDataset getDatabase() {
