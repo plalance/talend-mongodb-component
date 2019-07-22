@@ -1,8 +1,11 @@
 C:\Users\plalance\JavaProjects\talend-mongodb-component\src\main\java\com\plalance\components\source\MongoDbInputMapper.java
 C:\Users\plalance\JavaProjects\talend-mongodb-component\src\main\java\com\plalance\components\service\MongoComponentService.java
 C:\Users\plalance\JavaProjects\talend-mongodb-component\src\main\java\com\plalance\components\datastore\MongoDatastore.java
+C:\Users\plalance\JavaProjects\talend-mongodb-component\src\main\java\com\plalance\components\dataset\MongoOutputDataset.java
 C:\Users\plalance\JavaProjects\talend-mongodb-component\src\main\java\com\plalance\components\source\MongoDbInputSource.java
 C:\Users\plalance\JavaProjects\talend-mongodb-component\src\main\java\com\plalance\test\MongoDbClassTest.java
 C:\Users\plalance\JavaProjects\talend-mongodb-component\src\main\java\com\plalance\components\package-info.java
 C:\Users\plalance\JavaProjects\talend-mongodb-component\src\main\java\com\plalance\components\source\MongoDbInputMapperConfiguration.java
+C:\Users\plalance\JavaProjects\talend-mongodb-component\src\main\java\com\plalance\components\source\MongoDbOutputMapperConfiguration.java
 C:\Users\plalance\JavaProjects\talend-mongodb-component\src\main\java\com\plalance\components\dataset\MongoDataset.java
+C:\Users\plalance\JavaProjects\talend-mongodb-component\src\main\java\com\plalance\components\source\MongoDbOutputMapper.java

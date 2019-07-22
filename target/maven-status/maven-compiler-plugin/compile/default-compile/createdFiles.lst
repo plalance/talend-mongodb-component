@@ -1,8 +1,11 @@
+com\plalance\components\source\MongoDbOutputMapper.class
 com\plalance\components\dataset\MongoDataset.class
 com\plalance\components\source\MongoDbInputSource.class
 com\plalance\components\service\MongoComponentService.class
+com\plalance\components\source\MongoDbOutputMapperConfiguration.class
 com\plalance\test\MongoDbClassTest.class
 com\plalance\components\source\MongoDbInputMapperConfiguration.class
 com\plalance\components\source\MongoDbInputMapper.class
 com\plalance\components\datastore\MongoDatastore.class
 com\plalance\components\package-info.class
+com\plalance\components\dataset\MongoOutputDataset.class

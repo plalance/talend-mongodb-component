@@ -37,7 +37,8 @@ public class MongoDbClassTest {
 	 */
 	private void execute() {
 //		this.recuperationData();
-		this.insertData();
+//		this.insertData();
+		this.insertDataBatch();
 	}
 
 	private void recuperationData() {
@@ -116,6 +117,39 @@ public class MongoDbClassTest {
 		
 		Document doc = Document.parse(jsonString);
 		collection.insertOne(doc);
+	}
+	
+	private void insertDataBatch() {
+		MongoDatastore dstore = new MongoDatastore();
+		dstore.setDbHost("127.0.0.1");
+		dstore.setDbPort(27018);
+		dstore.setDbAuthEnabled(false);
+		dstore.setDbAuthPassword("");
+		dstore.setDbAuthSource("");
+		dstore.setDbAuthUser("");
+		
+		MongoOutputDataset dset = new MongoOutputDataset();
+		dset.setDatastore(dstore);
+		dset.setRequestDb("nfe204");
+		dset.setRequestCollection("talend");
+		
+		List<Document> docs = new ArrayList<>();
+		
+		MongoClient client = service.initMongoClientForOutput(dset);
+		
+		MongoDatabase db = client.getDatabase(dset.getRequestDb());
+		MongoCollection<Document> collection = db.getCollection(dset.getRequestCollection());
+		
+		String jsonString1 = "{\"_id\": \"id:1\", \"value\":\"Super insertion 1\"}";
+		String jsonString2 = "{\"_id\": \"id:2\", \"value\":\"Super insertion 2\"}";
+		
+		Document doc1 = Document.parse(jsonString1);
+		Document doc2 = Document.parse(jsonString2);
+		
+		docs.add(doc1);
+		docs.add(doc2);
+		
+		collection.insertMany(docs);
 	}
 	
 	private static JsonObject jsonFromString(String jsonObjectStr) {

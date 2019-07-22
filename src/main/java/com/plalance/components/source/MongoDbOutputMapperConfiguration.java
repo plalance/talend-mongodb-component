@@ -11,37 +11,49 @@ import com.plalance.components.dataset.MongoDataset;
 import com.plalance.components.dataset.MongoOutputDataset;
 
 @GridLayout({
-    // the generated layout put one configuration entry per line,
-    // customize it as much as needed
-    @GridLayout.Row({ "database" }),
-    @GridLayout.Row({ "commentaires" })
-})
+		// the generated layout put one configuration entry per line,
+		// customize it as much as needed
+		@GridLayout.Row({ "database", "bulkMode" }),
+		@GridLayout.Row({ "commentaires" }) })
 @Documentation("TODO fill the documentation for this configuration")
 public class MongoDbOutputMapperConfiguration implements Serializable {
-    @Option
-    @Documentation("DataStore de ce champs.")
-    private MongoOutputDataset database;
+	@Option
+	@Documentation("DataStore de ce champs.")
+	private MongoOutputDataset database;
 
-    @Option
+	@Option
+	@Documentation("Mode Bulk, ce mode insère les données en une seule fois, sous forme de liste au lieu d'utiliser le insertOne(Document) du driver MongoDb")
+	private Boolean bulkMode;
+
+	@Option
 	@TextArea
-    @Documentation("Champs pour décrire l'utilsiation que l'on fait de ce composant.")
-    private String commentaires;
+	@Documentation("Champs pour décrire l'utilisation que l'on fait de ce composant.")
+	private String commentaires;
 
-    public MongoOutputDataset getDatabase() {
-        return database;
-    }
+	public MongoOutputDataset getDatabase() {
+		return database;
+	}
 
-    public MongoDbOutputMapperConfiguration setDatabase(MongoOutputDataset database) {
-        this.database = database;
-        return this;
-    }
+	public MongoDbOutputMapperConfiguration setDatabase(MongoOutputDataset database) {
+		this.database = database;
+		return this;
+	}
 
-    public String getCommentaires() {
-        return commentaires;
-    }
+	public String getCommentaires() {
+		return commentaires;
+	}
 
-    public MongoDbOutputMapperConfiguration setCommentaires(String commentaires) {
-        this.commentaires = commentaires;
-        return this;
-    }
+	public MongoDbOutputMapperConfiguration setCommentaires(String commentaires) {
+		this.commentaires = commentaires;
+		return this;
+	}
+
+	public Boolean getBulkkMode() {
+		return bulkMode;
+	}
+
+	public MongoDbOutputMapperConfiguration setBulkMode(Boolean bulkMode) {
+		this.bulkMode = bulkMode;
+		return this;
+	}
 }
