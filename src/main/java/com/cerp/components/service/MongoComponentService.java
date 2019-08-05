@@ -1,4 +1,4 @@
-package com.plalance.components.service;
+package com.cerp.components.service;
 
 import java.io.StringReader;
 import java.util.Arrays;
@@ -15,15 +15,15 @@ import org.bson.json.JsonMode;
 import org.bson.json.JsonWriterSettings;
 import org.talend.sdk.component.api.service.Service;
 
+import com.cerp.components.dataset.MongoDataset;
+import com.cerp.components.dataset.MongoOutputDataset;
+import com.cerp.components.datastore.MongoDatastore;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 import com.mongodb.MongoClientSettings.Builder;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
-import com.plalance.components.dataset.MongoDataset;
-import com.plalance.components.dataset.MongoOutputDataset;
-import com.plalance.components.datastore.MongoDatastore;
 
 @Service
 public class MongoComponentService {

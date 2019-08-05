@@ -1,4 +1,4 @@
-package com.plalance.components.dataset;
+package com.cerp.components.dataset;
 
 import java.io.Serializable;
 
@@ -8,7 +8,7 @@ import org.talend.sdk.component.api.configuration.ui.layout.GridLayout;
 import org.talend.sdk.component.api.configuration.ui.widget.TextArea;
 import org.talend.sdk.component.api.meta.Documentation;
 
-import com.plalance.components.datastore.MongoDatastore;
+import com.cerp.components.datastore.MongoDatastore;
 
 @DataSet("MongoDataset")
 @GridLayout({

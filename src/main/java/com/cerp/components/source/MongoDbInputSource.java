@@ -1,4 +1,4 @@
-package com.plalance.components.source;
+package com.cerp.components.source;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,10 +18,10 @@ import org.talend.sdk.component.api.configuration.Option;
 import org.talend.sdk.component.api.input.Producer;
 import org.talend.sdk.component.api.meta.Documentation;
 
+import com.cerp.components.service.MongoComponentService;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.plalance.components.service.MongoComponentService;
 
 @Documentation("TODO fill the documentation for this source")
 public class MongoDbInputSource implements Serializable {

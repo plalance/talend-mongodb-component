@@ -1,4 +1,4 @@
-package com.plalance.test;
+package com.cerp.test;
 
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -14,13 +14,13 @@ import org.bson.Document;
 import org.bson.json.JsonMode;
 import org.bson.json.JsonWriterSettings;
 
+import com.cerp.components.dataset.MongoDataset;
+import com.cerp.components.dataset.MongoOutputDataset;
+import com.cerp.components.datastore.MongoDatastore;
+import com.cerp.components.service.MongoComponentService;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.plalance.components.dataset.MongoDataset;
-import com.plalance.components.dataset.MongoOutputDataset;
-import com.plalance.components.datastore.MongoDatastore;
-import com.plalance.components.service.MongoComponentService;
 
 public class MongoDbClassTest {
 	

@@ -1,4 +1,4 @@
-package com.plalance.components.source;
+package com.cerp.components.source;
 
 import static java.util.Collections.singletonList;
 
@@ -15,7 +15,7 @@ import org.talend.sdk.component.api.input.PartitionSize;
 import org.talend.sdk.component.api.input.Split;
 import org.talend.sdk.component.api.meta.Documentation;
 
-import com.plalance.components.service.MongoComponentService;
+import com.cerp.components.service.MongoComponentService;
 
 //
 // this class role is to enable the work to be distributed in environments supporting it.
