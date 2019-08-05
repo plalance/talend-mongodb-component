@@ -27,7 +27,10 @@ import com.plalance.components.service.MongoComponentService;
 @Documentation("Super Composant...")
 public class MongoDbOutputMapper implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private final MongoDbOutputMapperConfiguration configuration;
+	
 	private final MongoComponentService service;
 
 	// Name Of target database when inserting data.

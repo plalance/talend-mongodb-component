@@ -41,6 +41,7 @@ public class MongoDbClassTest {
 		this.insertDataBatch();
 	}
 
+	@SuppressWarnings("unused")
 	private void recuperationData() {
 		
 		MongoDatastore dstore = new MongoDatastore();
@@ -91,6 +92,7 @@ public class MongoDbClassTest {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private void insertData() {
 		MongoDatastore dstore = new MongoDatastore();
 		dstore.setDbHost("127.0.0.1");
@@ -152,6 +154,7 @@ public class MongoDbClassTest {
 		collection.insertMany(docs);
 	}
 	
+	@SuppressWarnings("unused")
 	private static JsonObject jsonFromString(String jsonObjectStr) {
 
 	    JsonReader jsonReader = Json.createReader(new StringReader(jsonObjectStr));

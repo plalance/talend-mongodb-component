@@ -4,11 +4,9 @@ import java.io.Serializable;
 
 import org.talend.sdk.component.api.configuration.Option;
 import org.talend.sdk.component.api.configuration.type.DataSet;
-import org.talend.sdk.component.api.configuration.type.meta.ConfigurationType;
 import org.talend.sdk.component.api.configuration.ui.layout.GridLayout;
 import org.talend.sdk.component.api.configuration.ui.widget.TextArea;
 import org.talend.sdk.component.api.meta.Documentation;
-import org.talend.sdk.component.api.service.configuration.Configuration;
 
 import com.plalance.components.datastore.MongoDatastore;
 

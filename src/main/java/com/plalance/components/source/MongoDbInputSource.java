@@ -19,7 +19,6 @@ import org.talend.sdk.component.api.input.Producer;
 import org.talend.sdk.component.api.meta.Documentation;
 
 import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.plalance.components.service.MongoComponentService;
@@ -27,6 +26,8 @@ import com.plalance.components.service.MongoComponentService;
 @Documentation("TODO fill the documentation for this source")
 public class MongoDbInputSource implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	private final MongoDbInputMapperConfiguration configuration;
 	
 	private final MongoComponentService service;

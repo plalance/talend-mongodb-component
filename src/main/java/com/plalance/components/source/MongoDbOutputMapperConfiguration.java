@@ -7,7 +7,6 @@ import org.talend.sdk.component.api.configuration.ui.layout.GridLayout;
 import org.talend.sdk.component.api.configuration.ui.widget.TextArea;
 import org.talend.sdk.component.api.meta.Documentation;
 
-import com.plalance.components.dataset.MongoDataset;
 import com.plalance.components.dataset.MongoOutputDataset;
 
 @GridLayout({
@@ -17,6 +16,9 @@ import com.plalance.components.dataset.MongoOutputDataset;
 		@GridLayout.Row({ "commentaires" }) })
 @Documentation("TODO fill the documentation for this configuration")
 public class MongoDbOutputMapperConfiguration implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 	@Option
 	@Documentation("DataStore de ce champs.")
 	private MongoOutputDataset database;

@@ -17,9 +17,6 @@ import org.talend.sdk.component.api.meta.Documentation;
 
 import com.plalance.components.service.MongoComponentService;
 
-import javax.json.JsonBuilderFactory;
-import javax.json.bind.Jsonb;
-
 //
 // this class role is to enable the work to be distributed in environments supporting it.
 //
@@ -29,7 +26,9 @@ import javax.json.bind.Jsonb;
 @Documentation("Super Composant...")
 public class MongoDbInputMapper implements Serializable {
 
-    private final MongoDbInputMapperConfiguration configuration;
+	private static final long serialVersionUID = 1L;
+	
+	private final MongoDbInputMapperConfiguration configuration;
     private final MongoComponentService service;
 
     /**

@@ -17,7 +17,11 @@ import com.plalance.components.dataset.MongoDataset;
 })
 @Documentation("TODO fill the documentation for this configuration")
 public class MongoDbInputMapperConfiguration implements Serializable {
-    @Option
+
+	
+	private static final long serialVersionUID = 1L;
+
+	@Option
     @Documentation("DataStore de ce champs.")
     private MongoDataset database;
 
