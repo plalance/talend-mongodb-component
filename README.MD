@@ -4,8 +4,6 @@ Composant permettant de conencter Talend dans sa version 7.0.x et au delà à un
 
 Ce composant n'existe pas dans Talend Open Studio dans sa version gratuite, et n'est fourni par Talend qu'a partir de la solution Big Data, une solution complète apportant énormément de possibilités en terme d'architecture et de management de données d'entrerprise. Pour autant, cette solution logicielle est complexe, et peut être que certaines personne peuvent avoir à utiliser MongoDb sur le Studio Talend Open Source (TOS).
 
-Ce composant répond à un besoin personnel, il ne sera pas adapté à la demande sauf si j'en trouve l'utilité.
-
 Le composant est développé sur la base du Framework Talend Component Kit dans sa version 1.1.11.
 
 # Utilisation du composant
