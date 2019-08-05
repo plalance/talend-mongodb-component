@@ -1,6 +1,6 @@
 # Mongo Db Connector for Talend Open Studio (Compatible TOS 7.0.x)
 
-Composant permettant de conencter Talend dans sa version 7.0.x et au delà à une base de données documentaire, MongoDb.
+Composant permettant de connecter Talend dans sa version 7.0.x et au delà à une base de données documentaire, MongoDb.
 
 Ce composant n'existe pas dans Talend Open Studio dans sa version gratuite, et n'est fourni par Talend qu'a partir de la solution Big Data, une solution complète apportant énormément de possibilités en terme d'architecture et de management de données d'entrerprise. Pour autant, cette solution logicielle est complexe, et peut être que certaines personne peuvent avoir à utiliser MongoDb sur le Studio Talend Open Source (TOS).
 
