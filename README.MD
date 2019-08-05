@@ -6,12 +6,11 @@ Ce composant n'existe pas dans Talend Open Studio dans sa version gratuite, et n
 
 Ce composant répond à un besoin personnel, il ne sera pas adapté à la demande sauf si j'en trouve l'utilité.
 
-Je développe ce composant Talend en respectant les normes actuelle du Framework Talend Component Kit dans sa version 1.1.11.
+Le composant est développé sur la base du Framework Talend Component Kit dans sa version 1.1.11.
 
 # Utilisation du composant
 
-Après installation, le plugin apparaît dans la palette, dans la vue Intégration sous la Famille de composant Mongo.
-Il ne correspond pour le moment qu'a un composant de type Input, pas de traitement process ni de output pour le moment.
+Après installation, le plugin apparaît dans la palette, dans la vue Intégration sous la Famille de composant CERP RRM / Mongo.
 
 A l'utilisation, les champs suivants sont configurables :
 
