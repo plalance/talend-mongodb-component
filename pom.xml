@@ -78,9 +78,7 @@
 					<runOrder>alphabetical</runOrder>
 				</configuration>
 			</plugin>
-
-
-
+			
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
@@ -91,6 +89,7 @@
 							<goal>single</goal>
 						</goals>
 						<configuration>
+						<finalName>mongo-component-0.0.1-SNAPSHOT</finalName>
 							<archive>
 								<manifest>
 									<mainClass>
@@ -101,12 +100,11 @@
 							<descriptorRefs>
 								<descriptorRef>jar-with-dependencies</descriptorRef>
 							</descriptorRefs>
+							<appendAssemblyId>false</appendAssemblyId>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
-
-
 
 		</plugins>
 	</build>
