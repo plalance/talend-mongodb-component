@@ -8,7 +8,7 @@ Le composant est développé sur la base du Framework Talend Component Kit dans 
 
 # Utilisation du composant
 
-Après installation, le plugin apparaît dans la palette, dans la vue Intégration sous la Famille de composant CERP RRM / Mongo.
+Après installation, le plugin apparaît dans la palette, dans la vue Intégration sous la Famille de composant Plalance/Mongo.
 
 A l'utilisation, les champs suivants sont configurables :
 
