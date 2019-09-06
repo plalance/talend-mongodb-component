@@ -1,7 +1,10 @@
 package com.cerp.components.source;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -17,6 +20,7 @@ import org.talend.sdk.component.api.processor.ElementListener;
 import org.talend.sdk.component.api.processor.Processor;
 
 import com.cerp.components.service.MongoComponentService;
+import com.cerp.components.source.MongoDbOutputMapperConfiguration.DateField;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -75,10 +79,34 @@ public class MongoDbOutputMapper implements Serializable {
 
 		String jsonString = row.toString();
 		Document doc = Document.parse(jsonString);
-
+		
+		
+		
+		
+		// TODO récup des champs de type date + formats depuis configuration mapper
+			
+	
+		// Update key in Document, change String date with format defined, to Date object.
+		for (DateField df : configuration.getDateFields()) {
+			
+			String docStringDate = doc.getString(df.field);
+			doc.remove(df.field);
+			
+			Date date = null;
+			try {
+				date = new SimpleDateFormat(df.format).parse(docStringDate);
+				doc.append(df.field, date);
+			} catch (ParseException e) {
+				doc.append(df.field, docStringDate);
+				e.printStackTrace();
+			}
+			
+		}
+		
+		
 		// bulkMode = store document in List<Document> docs, docs will be inserted in
 		// mongo in the release method.
-		if (configuration.getBulkkMode() != Boolean.TRUE) {
+		if (configuration.getBulkMode() != Boolean.TRUE) {
 			targetCollection.insertOne(doc);
 			System.out.println("------< Mongo Output Component >------");
 			System.out.println("__Input Row: " + jsonString);
@@ -91,7 +119,7 @@ public class MongoDbOutputMapper implements Serializable {
 
 	@PreDestroy
 	public void release() {
-		if (configuration.getBulkkMode() == Boolean.TRUE) {
+		if (configuration.getBulkMode() == Boolean.TRUE) {
 			targetCollection.insertMany(docs);
 			System.out.println("------< Mongo Output Component >------");
 			System.out.println("List of document inserterd.");

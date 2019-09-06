@@ -3,6 +3,7 @@ com\cerp\components\source\MongoDbInputMapper.class
 com\cerp\components\package-info.class
 com\cerp\components\source\MongoDbOutputMapper.class
 com\cerp\components\source\MongoDbOutputMapperConfiguration.class
+com\cerp\components\source\MongoDbOutputMapperConfiguration$DateField.class
 com\cerp\test\MongoDbClassTest.class
 com\cerp\components\source\MongoDbInputSource.class
 com\cerp\components\dataset\MongoDataset.class

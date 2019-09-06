@@ -1,6 +1,7 @@
 package com.cerp.components.source;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.talend.sdk.component.api.configuration.Option;
 import org.talend.sdk.component.api.configuration.ui.layout.GridLayout;
@@ -10,10 +11,10 @@ import org.talend.sdk.component.api.meta.Documentation;
 import com.cerp.components.dataset.MongoOutputDataset;
 
 @GridLayout({
-		// the generated layout put one configuration entry per line,
-		// customize it as much as needed
 		@GridLayout.Row({ "database", "bulkMode" }),
-		@GridLayout.Row({ "commentaires" }) })
+		@GridLayout.Row({ "dateFields" }),
+		@GridLayout.Row({ "commentaires" })
+})
 @Documentation("TODO fill the documentation for this configuration")
 public class MongoDbOutputMapperConfiguration implements Serializable {
 
@@ -26,7 +27,23 @@ public class MongoDbOutputMapperConfiguration implements Serializable {
 	@Option
 	@Documentation("Mode Bulk, ce mode insère les données en une seule fois, sous forme de liste au lieu d'utiliser le insertOne(Document) du driver MongoDb")
 	private Boolean bulkMode;
+	
+	@Option
+    @Documentation("")
+    private List<DateField> dateFields;
 
+    public static class DateField {
+
+        @Option
+        @Documentation("Champs à convertir en date")
+        public String field;
+
+        @Option
+        @Documentation("Format de date de ce champs")
+        public String format;
+    }
+
+	
 	@Option
 	@TextArea
 	@Documentation("Champs pour décrire l'utilisation que l'on fait de ce composant.")
@@ -41,6 +58,7 @@ public class MongoDbOutputMapperConfiguration implements Serializable {
 		return this;
 	}
 
+
 	public String getCommentaires() {
 		return commentaires;
 	}
@@ -50,12 +68,27 @@ public class MongoDbOutputMapperConfiguration implements Serializable {
 		return this;
 	}
 
-	public Boolean getBulkkMode() {
+	public Boolean getBulkMode() {
 		return bulkMode;
 	}
 
 	public MongoDbOutputMapperConfiguration setBulkMode(Boolean bulkMode) {
 		this.bulkMode = bulkMode;
+		return this;
+	}
+
+	/**
+	 * @return the dateFields
+	 */
+	public List<DateField> getDateFields() {
+		return dateFields;
+	}
+
+	/**
+	 * @param dateFields the dateFields to set
+	 */
+	public MongoDbOutputMapperConfiguration setDateFields(List<DateField> dateFields) {
+		this.dateFields = dateFields;
 		return this;
 	}
 }

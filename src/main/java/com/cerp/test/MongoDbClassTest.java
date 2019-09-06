@@ -1,10 +1,14 @@
 package com.cerp.test;
 
 import java.io.StringReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import javax.json.Json;
 import javax.json.JsonObject;
@@ -37,8 +41,8 @@ public class MongoDbClassTest {
 	 */
 	private void execute() {
 //		this.recuperationData();
-//		this.insertData();
-		this.insertDataBatch();
+		this.insertData();
+//		this.insertDataBatch();
 	}
 
 	@SuppressWarnings("unused")
@@ -95,29 +99,48 @@ public class MongoDbClassTest {
 	@SuppressWarnings("unused")
 	private void insertData() {
 		MongoDatastore dstore = new MongoDatastore();
-		dstore.setDbHost("127.0.0.1");
-		dstore.setDbPort(27018);
-		dstore.setDbAuthEnabled(false);
-		dstore.setDbAuthPassword("");
-		dstore.setDbAuthSource("");
-		dstore.setDbAuthUser("");
+		dstore.setDbHost("10.0.4.53");
+		dstore.setDbPort(27017);
+		dstore.setDbAuthEnabled(true);
+		dstore.setDbAuthPassword("OoXuhai8aith4AiR7o");
+		dstore.setDbAuthSource("mercure");
+		dstore.setDbAuthUser("mercure");
 		
 		MongoOutputDataset dset = new MongoOutputDataset();
 		dset.setDatastore(dstore);
-		dset.setRequestDb("nfe204");
-		dset.setRequestCollection("talend");
+		dset.setRequestDb("mercure");
+		dset.setRequestCollection("calendar");
 		
 		MongoClient client = service.initMongoClientForOutput(dset);
 		
 		MongoDatabase db = client.getDatabase(dset.getRequestDb());
 		MongoCollection<Document> collection = db.getCollection(dset.getRequestCollection());
 		
-		String jsonString = "{\"_id\": \"id3\", \"value\":\"Super insertion !!\"}";
+		Date date = null;
+		try {
+			date = new SimpleDateFormat("yyyy-MM-dd").parse("2019-09-12");
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		System.out.println("String JSON : "+ jsonString);
-		System.out.println("BSON Doc : "+ Document.parse(jsonString));
+		Document doc = new Document();
 		
-		Document doc = Document.parse(jsonString);
+		doc.append("_id", UUID.randomUUID().toString());
+		doc.append("date", date);
+		doc.append("exported", null);
+		doc.append("toggle", true);
+		
+		System.out.println(doc);
+		
+//		String jsonString = "{\"_id\": \"id5\", \"value\":\"Super insertion !!\"}";
+//		System.out.println("String JSON : "+ jsonString);
+//		System.out.println("BSON Doc : "+ Document.parse(jsonString));
+//		Document doc = Document.parse(jsonString);
+		
+		
+		
+		
 		collection.insertOne(doc);
 	}
 	

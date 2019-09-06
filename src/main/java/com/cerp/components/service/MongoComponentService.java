@@ -19,9 +19,9 @@ import com.cerp.components.dataset.MongoDataset;
 import com.cerp.components.dataset.MongoOutputDataset;
 import com.cerp.components.datastore.MongoDatastore;
 import com.mongodb.MongoClientSettings;
+import com.mongodb.MongoClientSettings.Builder;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
-import com.mongodb.MongoClientSettings.Builder;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 
